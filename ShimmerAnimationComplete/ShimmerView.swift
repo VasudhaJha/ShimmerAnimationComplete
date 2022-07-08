@@ -12,7 +12,7 @@ class ShimmerView: UIView {
 
     var gradientColorOne : CGColor = UIColor(white: 0.85, alpha: 1.0).cgColor
     var gradientColorTwo : CGColor = UIColor(white: 0.95, alpha: 1.0).cgColor
-    
+    var mainGradientLayer : CAGradientLayer = CAGradientLayer()
     
     
     func addGradientLayer() -> CAGradientLayer {
@@ -41,10 +41,14 @@ class ShimmerView: UIView {
     
     func startAnimating() {
         
-        let gradientLayer = addGradientLayer()
+        mainGradientLayer = addGradientLayer()
         let animation = addAnimation()
        
-        gradientLayer.add(animation, forKey: animation.keyPath)
+        mainGradientLayer.add(animation, forKey: animation.keyPath)
     }
-
+    
+    func stopAnimating(){
+        self.layer.removeAllAnimations()
+        mainGradientLayer.removeFromSuperlayer()
+    }
 }
